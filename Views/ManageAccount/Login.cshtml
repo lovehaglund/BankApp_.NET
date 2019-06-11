@@ -1,0 +1,31 @@
+﻿@model BankApplication.Models.ViewModels.LoginViewModel   
+<div class="row">
+        <div class="col l18 m8 s8 offset-l2">
+            <form method="post" asp-controller="ManageAccount" asp-action="Login" autocomplete="off">
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">account_circle</i>
+                        <label class="active" for="UserName">Username</label>
+                        <input type="text" asp-for="@Model.UserName" id="UserName" placeholder="">
+                        <div class="validation_text">
+                            <span asp-validation-for="UserName"></span>
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <label class="active" for="Password">Password</label>
+                        <input type="password" asp-for="@Model.Password" id="Password" placeholder="">
+                        <div class="validation_text">
+                            @Html.ValidationSummary(true, "")
+                            <span asp-validation-for="Password"></span>
+                        </div>
+
+                    </div>
+                    <div class="input-field center-align">
+                        <button type="submit" class="btn form-btn border-0" asp-controller="ManageAccount" asp-action="Login">Sign in</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>

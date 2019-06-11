@@ -1,0 +1,92 @@
+﻿@model BankApplication.Models.ViewModels.ManageCustomerViewModel
+<div class="row">
+    <div class="col l12 m12 s12">
+        <form method="post" asp-controller="ManageCustomer" asp-action="UpdateCustomer" autocomplete="off">
+            <div class="row">
+                <div class="input-field">
+                    <i class="material-icons prefix">face</i>
+                    <label for="FirstName">Firstname</label>
+                    <input type="text" id="FirstName" asp-for="@Model.GivenName" placeholder="@Model.GivenName">
+                    <div class="validation_text">
+                        <span asp-validation-for="GivenName"></span>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="@Model.CustomerId"/>
+
+                <div class="input-field">
+                    <i class="material-icons prefix">face</i>
+                    <label for="LastName">Lastname</label>
+                    <input type="text" asp-for="@Model.Surname" id="LastName" placeholder="@Model.Surname">
+                    <div class="validation_text">
+                        <span asp-validation-for="Surname"></span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">email</i>
+                    <label for="Email">Email</label>
+                    <input type="text" asp-for="@Model.Email" id="Email" placeholder="@Model.Email">
+                    <div class="validation_text">
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <label class="active" for="City">Address</label>
+                    <input type="text" asp-for="@Model.Address" id="Address" placeholder="@Model.Address">
+                    <div class="validation_text">
+                        <span asp-validation-for="Address"></span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <label class="active" for="City">City</label>
+                    <input type="text" asp-for="@Model.City" id="City" placeholder="@Model.City">
+                    <div class="validation_text">
+                        <span asp-validation-for="City"></span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <label class="active" for="Password">Zip Code</label>
+                    <input asp-for="@Model.ZipCode" id="ZipCode" placeholder="@Model.ZipCode">
+                    <div class="validation_text">
+                        <span asp-validation-for="ZipCode"></span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <label class="active" for="City">Country</label>
+                    <input type="text" asp-for="@Model.Country" id="Country" placeholder="@Model.Country">
+                    <div class="validation_text">
+                        <span asp-validation-for="Country"></span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <label class="active" for="Password">Country code</label>
+                    <input asp-for="@Model.CountryCode" id="CountryCode" placeholder="@Model.CountryCode">
+                    <div class="validation_text">
+                        <span asp-validation-for="CountryCode"></span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <label class="active" for="Password">National ID</label>
+                    <input asp-for="@Model.NationalId" id="NationalId" placeholder="@Model.NationalId">
+                    <div class="validation_text">
+                        <span asp-validation-for="NationalId"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6">
+                        <i class="material-icons prefix">list</i>
+                        <select asp-for="@Model.ChosenGender" asp-items="@Model.Gender"></select>
+                    </div>
+                    <div class="input-field col l6">
+                        <button type="submit" class="btn form-btn border-0">Update</button>
+                    </div>
+                </div>  
+            </div>
+        </form>
+    </div>
+</div>

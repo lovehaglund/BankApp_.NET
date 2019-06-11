@@ -1,0 +1,38 @@
+﻿@model AccountViewModel
+<div class="row">
+    <div class ="col l6">
+        @foreach (var t in @Model.Transactions)
+        {
+            <p class="customerDetailFont">Transaction ID: <span class="customerDetailFontSpan">@t.TransactionId</span></p>
+            <p class="customerDetailFont">Amount: <span class="customerDetailFontSpan">@t.Amount.ToString("C")</span></p>
+            <p class="customerDetailFont">Balance: <span class="customerDetailFontSpan">@t.Balance.ToString("C")</span></p>
+            <p class="customerDetailFont">Created date: <span class="customerDetailFontSpan">@t.Date</span></p>
+            <p class="customerDetailFont">Operation: <span class="customerDetailFontSpan">@t.Operation</span></p>
+
+            <hr />
+        }
+    </div>
+</div>
+
+<div id="divID">
+@if (Model.HasMorePages)
+{
+    <div id="spinner" class="spinner-border" style="display: none;" role="status">
+        <span class="sr-only">Laddar...</span>
+    </div>
+    <a
+        asp-route-id="@Model.CurrentAccountId"
+        asp-route-page="@(Model.PageNumber + 1)"
+        data-ajax="true"
+        data-ajax-mode="REPLACE-WITH"
+        data-ajax-update="#divID"
+        role="button">
+        <p>
+            Load more
+
+        </p>
+    </a>
+}
+    </div >
+
+

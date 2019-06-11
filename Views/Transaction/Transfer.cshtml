@@ -1,0 +1,35 @@
+﻿@model TransactionViewModel
+<div class="row">
+    <div class="col l6 offset-l3">
+        <h4>Transfer</h4>
+    </div>
+</div>
+<a asp-controller="Account" asp-action="ShowAccountInfo" asp-route-id="@Model.FromAccount">Go back</a>
+
+<form asp-controller="Transaction" asp-action="Transfer" method="post">
+    <div class="row">
+        <div class="input-field col s6 l6 m6 offset-l3 ">
+            <input asp-for="ToAccount" type="text" class="validate">
+            <label for="DepositTo">Enter account you want to transfer to</label>
+        </div>
+        <input asp-for="FromAccount" type="hidden">
+
+    </div>
+    <div class="row">
+        <div class="input-field col s6 l6 m6 offset-l3">
+            <input asp-for="Amount" id="first_name" type="text" class="validate">
+            <label for="Amount">Enter the Amount</label>
+            <div class="validation_text">
+                <span asp-validation-for="@Model.Amount"></span>
+                <div asp-validation-summary="All">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l4 offset-l4">
+            <button class="waves-effect waves-light btn" asp-action="Transfer">button</button>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,45 @@
+﻿@model BankApplication.Models.BankStatisticsViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="row">
+    <div class="col s12">
+        <h3>Welcome to the lovster bank</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <table class="striped responsive-table highlight">
+            <thead>
+            <tr>
+
+                <th>Total Accounts</th>
+                <th>Total Customers</th>
+                <th>Total Amount</th>
+
+
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr>
+                <td>
+                    @Model.NumberOfAccounts
+                </td>
+                <td>
+                    @Model.NumberOfCustomers
+                </td>
+                <td>
+                    @Model.TotalAmount kr
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

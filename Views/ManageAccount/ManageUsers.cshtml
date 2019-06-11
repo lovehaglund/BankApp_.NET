@@ -1,0 +1,54 @@
+﻿@model BankApplication.Models.ViewModels.ManageAccountViewModel
+<div class="row">
+<div class="col s12">
+
+    <div class="row">
+        <div class="col s12">
+            <h5>Manage Accounts</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <table class="striped responsive-table highlight">
+                <thead>
+                <tr>
+                    <th>Role</th>
+                    <th>Username</th>
+                    <th>Update user</th>
+                    <th>Delete user</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+
+                @foreach (var item in @Model.UserList )
+                {
+
+                    <tr>
+                        <td>
+                            @item.RoleName
+                        </td>
+                        <td>
+                            @item.UserName
+                        </td>
+
+                        <td>
+                            <form asp-controller="ManageAccount" asp-action="UpdateAccount" asp-route-id="@item.Id" method="get">
+                                <button type="submit" class="btn form-btn-alt border-0 waves-effect waves-light">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-controller="ManageAccount" asp-action="DeleteUser" method="get" asp-route-id="@item.Id">
+                                <button type="submit" class="btn form-btn-alt border-0 waves-effect waves-light">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

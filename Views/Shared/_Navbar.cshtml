@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@inject UserManager<IdentityUser> userManager
+@if (signInManager.IsSignedIn(User))
+{
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" data-target="slide-out" data-activates="mobile-demo" class="button-collapse show-on-large sidenav-trigger"><i class="material-icons">menu</i><i class="material-icons">attach_money</i></a>
+        <a asp-action="Index" asp-controller="Home" class="brand-logo">Bank</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            @if (@signInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <a class="white-text text-lighten-1">@User.Identity.Name</a>
+                </li>
+                <li>
+                    <a class="grey-text text-darken-3" asp-area="" asp-controller="ManageAccount" asp-action="LogOff">Log Off</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+<ul id="slide-out" class="sidenav">
+    @if (User.IsInRole("Cashier"))
+    {
+        <li><a class="subheader">Cashier</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a asp-controller="ManageCustomer" asp-action="RegisterCustomer"><i class="material-icons">child_care</i>Register Customer</a></li>
+        <li><a asp-controller="Customer" asp-action="ShowCustomers"><i class="material-icons">child_care</i>Show Customers</a></li>
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        <li><a class="subheader">Admin</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a asp-controller="ManageAccount" asp-action="ManageUsers"><i class="material-icons">child_care</i>Manage Users/Accounts</a></li>
+        <li><a asp-controller="ManageAccount" asp-action="RegisterAccount"><i class="material-icons">child_care</i>Register Account</a></li>
+
+    }
+
+
+</ul>
+}

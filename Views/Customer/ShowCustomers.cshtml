@@ -1,0 +1,97 @@
+﻿@model CustomerViewModel
+
+<div class="row">
+
+<form asp-controller="Customer" asp-action="ShowCustomers" method="get">
+    @*<input type="hidden" name="page" />*@
+        <div class="input-field col l4 offset-l2">
+            <input type="text" placeholder="Search for name" asp-for="SearchName" />
+            <div class="validation_text">
+                <span asp-validation-for="SearchName"></span>
+            </div>
+            <input type="text" placeholder="Search for city" asp-for="SearchCity" />
+            <div class="validation_text">
+                <span asp-validation-for="SearchCity"></span>
+            </div>
+            <button class="btn waves-effect waves-light">Search</button>
+
+        </div>
+</form>
+    <form asp-controller="Customer" asp-action="ShowCustomer" method="get">
+        <div class="input-field col l4">
+        <input type="number" min="0" placeholder="Search for Customer number" asp-for="Id"/>
+        <button class="btn waves-effect waves-light">Search ID</button>
+        </div>
+    </form>
+
+</div>
+<div class="row">
+    <div class="col s12">
+        <table class="striped responsive-table highlight">
+            <thead>
+                <tr>
+                    <th>Customer number</th>
+                    <th>Name</th>
+                    <th>National Id</th>
+                    <th>City</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model.Customers)
+                {
+
+                    <tr>
+                        <td>
+                            <a asp-action="ShowCustomer" asp-controller="Customer" asp-route-id="@item.CustomerId">@item.CustomerId</a>
+                        </td>
+                        <td>
+                            @item.GivenName @item.Surname
+                        </td>
+                        <td>
+                            @item.NationalId
+                        </td>
+                        <td>
+                            @item.City
+                        </td>
+                        <td>
+                            @item.Address
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <div class="row">
+                    @if (Model.PageNumber != 1)
+                    {
+                        <form style="display: inline"asp-action="ShowCustomers" asp-controller="Customer" method="get">
+                            <input type="hidden" asp-for="SearchCity" />
+                            <input type="hidden" asp-for="SearchName" />
+                            <input type="hidden" name="page" value="@(Model.PageNumber - 1)" />
+                            <button class="buttonPagination"><i class="material-icons">arrow_back</i></button>
+                        </form>
+
+                    }
+                    <li class="active"><a asp-for="NumberOfPages">@Model.PageNumber</a></li>
+                    @if (Model.HasMorePages)
+                    {
+                        <form style="display: inline"asp-action="ShowCustomers" asp-controller="Customer" method="get">
+                            <input type="hidden" asp-for="SearchCity" />
+                            <input type="hidden" asp-for="SearchName" />
+                            <input type="hidden" name="page" value="@(Model.PageNumber + 1)" />
+                            <button class="buttonPagination"><i class="material-icons">arrow_forward</i></button>
+                        </form>
+                    }
+             
+            </div>
+           
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model CustomerDetailViewModel
+
+
+@if (@Model.Customers.Count == 0)
+{
+    <div class="row">
+        <div class="col l4 offset-l4">
+            <h3>There is no customer with that customer number..</h3>
+
+        </div>
+    </div>
+}
+else
+{
+    <a asp-controller="Customer" asp-action="ShowCustomers">Go back</a>
+
+    <div class="row">
+        <div class="col l6">
+
+
+            <a class="btn form-btn border-0" asp-route-id="@Model.currentCustomerId" asp-controller="ManageCustomer" asp-action="UpdateCustomer">Update</a>
+
+
+
+            @foreach (var i in @Model.Customers)
+            {
+                <p class="customerDetailFont">Customer number: <span class="customerDetailFontSpan">@i.CustomerId</span></p>
+                <hr />
+                <p class="customerDetailFont">Given name: <span class="customerDetailFontSpan">@i.GivenName</span></p>
+                <hr class="customerDetailHr" />
+                <p class="customerDetailFont">Surname: <span class="customerDetailFontSpan">@i.Surname</span></p>
+                <hr class="customerDetailHr" />
+                <p class="customerDetailFont">National Id: <span class="customerDetailFontSpan">@i.NationalId</span></p>
+                <hr class="customerDetailHr" />
+                <p class="customerDetailFont">Address: <span class="customerDetailFontSpan">@i.Address</span></p>
+                <hr class="customerDetailHr" />
+                <p class="customerDetailFont">City: <span class="customerDetailFontSpan">@i.City</span></p>
+                <hr />
+            }
+        </div>
+
+        <div class="col l6">
+            @foreach (var i in @Model.CustomerAccounts)
+            {
+                <p class="customerDetailFont">Account number: <a asp-controller="Account" asp-action="ShowAccountInfo" asp-route-id="@i.AccountId"><span class="customerDetailFontSpan">@i.AccountId</span></a></p>
+                <p class="customerDetailFont">Balance: <span class="customerDetailFontSpan">@i.Balance.ToString("C")</span></p>
+                <p class="customerDetailFont">Created: <span class="customerDetailFontSpan">@i.Created</span></p>
+                <hr />
+            }
+            <p class="customerDetailFont">Total balance: <span class="customerDetailFontSpan">@Model.TotalAmount.ToString("C")</span></p>
+        </div>
+    </div>
+}
+
+
+

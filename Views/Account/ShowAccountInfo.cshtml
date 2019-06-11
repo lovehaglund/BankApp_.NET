@@ -1,0 +1,54 @@
+﻿@using Domain.Entities
+@using Microsoft.AspNetCore.Http
+@using Microsoft.CodeAnalysis.CSharp
+@*@inject IHttpContextAccessor HttpContextAccessor*@
+
+@model AccountViewModel
+
+
+<div class="row">
+    <div class="col l4">
+        <br/>
+        <br/>
+        <form asp-controller="Transaction" asp-action="Withdraw" method="get">
+            <button id="buttonWidth"class="waves-effect waves-light btn" asp-controller="Transaction" asp-action="Withdraw" asp-route-id="@Model.CurrentAccountId"><i class="material-icons left">attach_money</i>Withdraw</button>
+        </form>
+        <br/>
+        <form asp-controller="Transaction" asp-action="Deposit" method="get">
+            <button id="buttonWidth"class="waves-effect waves-light btn" asp-controller="Transaction" asp-action="Deposit" asp-route-id="@Model.CurrentAccountId"><i class="material-icons left">attach_money</i>Deposit</button>
+        </form>
+        <br/>
+        <form asp-controller="Transaction" asp-action="Transfer" method="get">
+            <button id="buttonWidth"class="waves-effect waves-light btn" asp-controller="Transaction" asp-action="Transfer" asp-route-id="@Model.CurrentAccountId"><i class="material-icons left">attach_money</i>Transfer</button>
+        </form>
+    </div>
+    <div class="col l6">
+        @foreach (var a in @Model.Accounts)
+        {
+            <p class="customerDetailFont">Account number: <span class="customerDetailFontSpan"> @a.AccountId</span></p>
+            <hr/>
+            <p class="customerDetailFont">Balance: <span class="customerDetailFontSpan">@a.Balance.ToString("C")</span></p>
+            <hr class="customerDetailHr"/>
+            <p class="customerDetailFont">Created date: <span class="customerDetailFontSpan">@a.Created</span></p>
+            <hr class="customerDetailHr"/>
+            <p class="customerDetailFont">Frequency: <span class="customerDetailFontSpan">@a.Frequency</span></p>
+            <hr/>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col l6 offset-l4">
+     
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col l6 offset-l4">
+        
+        <partial name="_TransactionPartial" model="@Model"/>
+    </div>
+</div>
+   
+
+

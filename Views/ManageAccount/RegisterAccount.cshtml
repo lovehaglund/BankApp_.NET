@@ -1,0 +1,30 @@
+﻿@model BankApplication.Models.ViewModels.ManageAccountViewModel
+<a asp-controller="ManageAccount" asp-action="ManageUsers" >Go back</a>
+
+<div class="row">
+    <div class="col l6 offset-l3">
+        <form asp-controller="ManageAccount" asp-action="Register" method="post">
+            <div class="input-field">
+                <i class="material-icons prefix">vpn_key</i>
+                <label class="active" for="City">Username</label>
+                <input type="text" asp-for="@Model.UserName" id="Username" placeholder="">
+                <div class="validation_text">
+                    <span asp-validation-for="UserName"></span>
+                </div>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">vpn_key</i>
+                <label class="active" for="Password">Password</label>
+                <input type="password" asp-for="@Model.Password" id="Password" placeholder="">
+                <div class="validation_text">
+                    <span asp-validation-for="Password"></span>
+                </div>
+            </div>
+            <select asp-for="@Model.RoleId" asp-items="@Model.RoleList"></select>
+            <div class="input-field">
+                <button type="submit" class="btn form-btn border-0">Register</button>
+            </div>
+        </form>
+
+    </div>
+</div>
